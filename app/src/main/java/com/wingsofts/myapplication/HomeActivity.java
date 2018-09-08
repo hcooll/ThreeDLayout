@@ -27,4 +27,8 @@ public class HomeActivity extends AppCompatActivity {
     public void startUserCenterActivity(View view){
         startActivity(new Intent(this,UserCenterActivity.class));
     }
+
+    public void startPathTextActivity(View view){
+        startActivity(new Intent(this,PathTextActivity.class));
+    }
 }
