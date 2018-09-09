@@ -37,21 +37,20 @@ public class ThreeDRotateView extends ViewGroup implements View.OnTouchListener,
     /**
      * 动画实际上就是围绕着椭圆的轨迹来旋转的。
      */
-    private int mOvalWidthMargin;//椭圆的宽距离父容器两边的宽度
-    private int mOvalHeightMargin;//椭圆的高距离父容器两边的长度
-    private int mOvalWidth;//椭圆的宽度
-    private int mOvalHeight;//椭圆的高度
-    private View[] mChildrenView;//所有的子view
-    private double[] mAngles;//所有view角度的集合
+    private int mOvalWidthMargin;   //椭圆的宽距离父容器两边的宽度
+    private int mOvalHeightMargin;  //椭圆的高距离父容器两边的长度
+    private int mOvalWidth;         //椭圆的宽度
+    private int mOvalHeight;        //椭圆的高度
+    private View[] mChildrenView;   //所有的子view
+    private double[] mAngles;       //所有view角度的集合
 
-    private boolean flag = true;//是否初始化过子view
-    private boolean animate = false;//是否正在动画
-    private boolean clockwise = true;//是否顺时针旋转
+    private boolean flag = true;    //是否初始化过子view
+    private boolean animate = false;    //是否正在动画
+    private boolean clockwise = true;   //是否顺时针旋转
 
-    private float animateTime = 5000;//默认的动画持续时间
-    private float currentTime = 0;//当前动画执行的时间
+    private float animateTime = 5000;   //默认的动画持续时间
+    private float currentTime = 0;      //当前动画执行的时间
     private GestureDetector mGesture;
-
 
     private My3dInterpolate interpolate;//自定义的插值器
     private OnItemClickListener itemClickListener;//自定义的子view的点击监听器
@@ -64,7 +63,7 @@ public class ThreeDRotateView extends ViewGroup implements View.OnTouchListener,
         this.itemClickListener = itemClickListener;
     }
 
-    private Handler handler = new Handler() {
+    private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
@@ -225,7 +224,7 @@ public class ThreeDRotateView extends ViewGroup implements View.OnTouchListener,
                         calculateAngle(interpolate.getInterpolation(currentTime / animateTime));
                     else
                         calculateAngle(getInterpolate(currentTime / animateTime));
-                    handler.sendEmptyMessage(0);
+                    mHandler.sendEmptyMessage(0);
                     try {
                         currentTime += 10;
                         sleep(5);
